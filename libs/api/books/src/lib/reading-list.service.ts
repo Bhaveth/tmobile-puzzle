@@ -23,6 +23,18 @@ export class ReadingListService {
     });
   }
 
+  async markAsRead(b: ReadingListItem): Promise<void> {
+    this.storage.update(list => {
+      const item = list.find(u => u.bookId === b.bookId);
+      item.finished = b.finished;
+      item.finishedDate = b.finishedDate;
+      const index = list.findIndex(u => u.bookId === b.bookId);
+      list[index] = item;
+      return list;
+    });
+  }
+
+
   async removeBook(id: string): Promise<void> {
     this.storage.update(list => {
       return list.filter(x => x.bookId !== id);

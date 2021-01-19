@@ -8,7 +8,16 @@
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
       </div>
+      <div><strong *ngIf="b?.finishedDate">Completed On:</strong> {{ formatDate(b?.finishedDate) }}</div>
     </div>
+    <button
+        mat-icon-button
+        [disabled]="b.finished"
+        (click)="markAsFinished(b)"
+      >
+      <mat-icon matTooltip="You completed reading the book" *ngIf="b.finished" class="color-green success-icon mb-10">check_circle_outline</mat-icon>
+      <mat-icon matTooltip="Mark as finished" *ngIf="!b.finished" class="color-grey">check_circle</mat-icon>
+      </button>
     <div>
       <button
         mat-icon-button
