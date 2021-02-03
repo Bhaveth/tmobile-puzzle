@@ -8,9 +8,10 @@
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
       </div>
-      <div><strong *ngIf="b?.finishedDate">Completed On:</strong> {{ formatDate(b?.finishedDate) }}</div>
+      <div data-testing="complete-reading"><strong *ngIf="b?.finishedDate">Completed On:</strong> {{ formatDate(b?.finishedDate) }}</div>
     </div>
     <button
+        data-testing="mark-as-read"
         mat-icon-button
         [disabled]="b.finished"
         (click)="markAsFinished(b)"
